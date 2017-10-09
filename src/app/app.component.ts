@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  listItem = "";
+
+  addItem(input:string){
+    this.listItem += `<li class="list-group-item">${input}</li>`;
+  }
+
 }
