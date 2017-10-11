@@ -1,11 +1,9 @@
 <div class="container">
   <h1>todo アプリテスト</h1>
-  <div class="input-group">
-    <input #inItem type="text" class="form-control" placeholder="今日の予定を入力しよう！" (keyup.enter)="addItem(inItem.value)">
-    <span class="input-group-btn">
-      <button type="button" class="btn btn-default" (click)="addItem(inItem.value)">追加</button>
-    </span>
-  </div>
+  <form class="form-inline my-2 my-lg-0">
+      <input #inItem type="text" class="form-control col-10" placeholder="今日の予定を入力しよう！" (keyup.enter)="addItem(inItem.value)">
+      <button type="button" class="btn btn-outline-success col-2 .offset-sm-1" (click)="addItem(inItem.value)">追加</button>
+  </form>
 </div>
 <div class="container">
   <ul [innerHTML]="listItem" class="list-group"></ul>
