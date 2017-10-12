@@ -1,10 +1,17 @@
-<div class="container">
-  <h1>todo アプリテスト</h1>
-  <form class="form-inline my-2 my-lg-0">
-      <input #inItem type="text" class="form-control col-10" placeholder="今日の予定を入力しよう！" (keyup.enter)="addItem(inItem.value)">
-      <button type="button" class="btn btn-outline-success col-2 .offset-sm-1" (click)="addItem(inItem.value)">追加</button>
-  </form>
+<nav class="navbar navbar-light" style="background-color:#fff">
+    <a class="navbar-brand">
+      <img src="../assets/toplogo.svg" width="30" height="30" class="d-inline-block align-top" style="fill: #fff;" alt="">
+      Todoアプリケーション
+    </a>
+</nav>
+<div class="col-md-9 col-12 mx-auto">
+      <div class="input-group my-4">
+          <input #inItem type="text" class="form-control" placeholder="今日の予定を入力しよう！" (keyup.enter)="addItem(inItem.value)" id="itemInput" [(ngModel)]="inputValue">
+          <span class="input-group-btn">
+            <button class="btn btn-outline-info" (click)="addItem(inItem.value)">追加</button>
+          </span>
+        </div>
 </div>
-<div class="container">
-  <ul [innerHTML]="listItem" class="list-group"></ul>
+<div class="col-md-9 col-12 mx-auto">
+  <ul [innerHTML]="safeListItem" class="list-group"></ul>
 </div>
