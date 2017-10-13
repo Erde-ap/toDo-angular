@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
+import { List } from "./list";
 
 @Component({
   selector: 'app-root',
@@ -8,26 +8,33 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-  title = 'app';
   listItem:string = ``;
   inputValue = "";
-  safeListItem:SafeHtml;
+  selected: List;
+  current = new Date();
+  lists = [];
+
+  selectClick(list:List){
+    this.selected = list;
+  }
 
   addItem(input:string){
     if (input == "") {
-      return false;
+    return false;
     }else{
-      this.listItem += `
-      <li class="todo-item-group todo-item">
-      <label>${input}</label>
-      <span class="input-group-btn">
-      <button class="btn btn-outline-info">完了</button>
-      </span>
-      </li>`;
-      this.inputValue ="";
-      return this.safeListItem = this.sanitizer.bypassSecurityTrustHtml(this.listItem);
+      var tempLists : List = {
+        id: this.lists.length+1,
+        date: new Date(),
+        content: input,
+        finished_flag:false
+      }
+      this.lists.push(tempLists);
+      this.inputValue= "";
     }
   }
-  constructor(private sanitizer: DomSanitizer) {
+
+  finishClick(list:List){
+    this.lists[list.id-1].finished_flag = true;
   }
+
 }
