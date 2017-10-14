@@ -13,7 +13,7 @@ export class AppComponent{
   selected: List;
   current = new Date();
   lists = [];
-
+  //test文字列
   selectClick(list:List){
     this.selected = list;
   }
