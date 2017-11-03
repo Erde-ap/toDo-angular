@@ -5,7 +5,7 @@ import { List } from "./list";
 @Component({
     selector: 'detaile-list',
     template: `
-    <div class="col-md-9 col-12 mx-auto">
+    <div class="col-md-9 col-12 mx-auto blockquote">
         <ul *ngIf="item">
             <li>ID:{{item.id}}</li>
             <li>日時:{{item.date | date: 'y MM dd (EEE) '}}</li>
@@ -14,6 +14,9 @@ import { List } from "./list";
         </ul>
     </div>
     `,
+    styles:[
+
+    ]
   })
   export class DetaileComponent {
     @Input() item:List;
