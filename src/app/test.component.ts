@@ -3,7 +3,7 @@ import { List } from "./list";
 
 
 @Component({
-    selector: 'detaile-list',
+    selector: 'test-list',
     template: `
     <div class="col-md-9 col-12 mx-auto blockquote">
         <ul *ngIf="item">
@@ -18,6 +18,6 @@ import { List } from "./list";
 
     ]
   })
-  export class DetaileComponent {
+  export class TestComponent {
     @Input() item:List;
   }

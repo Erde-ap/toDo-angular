@@ -24,4 +24,5 @@
     </div>
   </ul>
 </div>
-<detaile-list [item]="selected"></detaile-list>
+<test-list [item]="selected"></test-list>
+<edit-item [item]="selected" (edited)="onedited($event)"></edit-item>

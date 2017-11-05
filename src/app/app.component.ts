@@ -34,6 +34,16 @@ export class AppComponent{
 
   finishClick(list:List){
     this.lists[list.id-1].finished_flag = true;
+    this.selected = null;
   }
 
+  onedited(list:List){
+    for (let item of this.lists) {
+      if(item.id === list.id){
+        item.content = list.content;
+        item.date = list.date;
+      }
+    }
+    this.selected = null;
+  }
 }
