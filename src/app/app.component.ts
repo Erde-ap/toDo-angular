@@ -14,7 +14,10 @@ export class AppComponent{
   current = new Date();
   lists = [];
   selectClick(list:List){
-    this.selected = list;
+    let tmp = new List();
+    tmp.content = list.content;
+    tmp.id = list.id;
+    this.selected = tmp;
   }
 
   addItem(input:string){

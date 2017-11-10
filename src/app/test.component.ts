@@ -5,8 +5,8 @@ import { List } from "./list";
 @Component({
     selector: 'test-list',
     template: `
-    <div class="col-md-9 col-12 mx-auto blockquote">
-        <ul *ngIf="item">
+    <div  *ngIf="item" class="col-md-9 col-12 mx-auto blockquote">
+        <ul>
             <li>ID:{{item.id}}</li>
             <li>日時:{{item.date | date: 'y MM dd (EEE) '}}</li>
             <li>内容:{{item.content}}</li>
