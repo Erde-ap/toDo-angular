@@ -15,7 +15,7 @@
 <div class="col-md-9 col-12 mx-auto">
   <ul class="list-group">
     <div *ngFor="let b of lists">
-        <li class="todo-item-group todo-item" *ngIf="!b.finished_flag">
+        <li class="todo-item-group todo-item" *ngIf="!b.finished_flag" [@labelState]="'active'">
             <label (click)="selectClick(b)">{{b.content}}</label>
             <span class="input-group-btn">
             <button class="btn btn-outline-info" (click)="finishClick(b)">完了</button>

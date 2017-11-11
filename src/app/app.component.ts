@@ -1,11 +1,24 @@
 import { Component } from '@angular/core';
 
 import { List } from "./list";
+import { trigger,state,style,transition,animate } from "@angular/animations";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations:[
+    trigger('labelState',[
+      state('active',style({ transform: 'translateX(0)' })),
+      transition('void => active', [
+        style({transform: 'translateX(100%)'}),
+        animate(300)
+      ]),
+      transition('active => void', [
+        animate(300, style({transform: 'translateX(100%)'}))
+      ])
+    ])
+  ]
 })
 export class AppComponent{
   listItem:string = ``;
@@ -13,6 +26,7 @@ export class AppComponent{
   selected: List;
   current = new Date();
   lists = [];
+
   selectClick(list:List){
     let tmp = new List();
     tmp.content = list.content;
