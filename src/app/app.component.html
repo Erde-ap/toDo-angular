@@ -14,11 +14,11 @@
 </div>
 <div class="col-md-9 col-12 mx-auto">
   <ul class="list-group">
-    <div *ngFor="let b of lists">
-        <li class="todo-item-group todo-item" *ngIf="!b.finished_flag" [@labelState]="'active'">
-            <label (click)="selectClick(b)">{{b.content}}</label>
+    <div *ngFor="let i of lists">
+        <li class="todo-item-group todo-item" *ngIf="!i.finished_flag" [@labelState]="'active'">
+            <label (click)="selectClick(i)">{{i.content}}</label>
             <span class="input-group-btn">
-            <button class="btn btn-outline-info" (click)="finishClick(b)">完了</button>
+            <button class="btn btn-outline-info" (click)="finishClick(i)">完了</button>
             </span>
         </li>
     </div>

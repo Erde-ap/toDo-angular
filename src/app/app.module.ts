@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppComponent } from './app.component';
 import { TestComponent } from './test.component';
 import { EditComponent } from "./edit.component";
+import { ListService } from "./list.service";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { EditComponent } from "./edit.component";
     FormsModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [ListService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

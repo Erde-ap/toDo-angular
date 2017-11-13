@@ -9,8 +9,9 @@ import { List } from "./list";
     <div *ngIf="item" class="col-md-9 col-12 mx-auto">
     <form #editForm="ngForm" (ngSubmit)="onsubmit()">
       <div>
-        <input id="content" name="content" type="text" [(ngModel)]="item.content">
+        <input id="content" name="content" type="text" [(ngModel)]="item.content" autocomplete="off">
         <input type="submit" value="変更" class="btn btn-primary">
+        <input type="reset" value="取り消し" class="btn btn-primary" (click)="this.item = null;">
       </div>
     </form>
     </div>
@@ -18,11 +19,13 @@ import { List } from "./list";
     styles:[
       `#content{
         width: 60%;
+        bottom: 10px;
         background: transparent;
         color: #595F6E;
         border-width: 0 0 1px 0;
         border-radius: 0;
         -webkit-appearance: none;
+        display:fixed;
       }
       input[type="text"],
       input[type="password"],

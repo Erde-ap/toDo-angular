@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 
 import { List } from "./list";
 import { trigger,state,style,transition,animate } from "@angular/animations";
+import { ListService } from './list.service';
 
 @Component({
   selector: 'app-root',
@@ -9,23 +10,27 @@ import { trigger,state,style,transition,animate } from "@angular/animations";
   styleUrls: ['./app.component.css'],
   animations:[
     trigger('labelState',[
-      state('active',style({ transform: 'translateX(0)' })),
+      state('active',style({transform: 'translateX(0)'})),
+      state('void',style({transform:'translateX(100%)'})),
       transition('void => active', [
-        style({transform: 'translateX(100%)'}),
-        animate(300)
+        animate('5000ms ease-in',style({transform: 'translateX(0)'}))
       ]),
       transition('active => void', [
-        animate(300, style({transform: 'translateX(100%)'}))
-      ])
+        animate('350ms ease-in', style({transform: 'translateX(-100%)'}))
+     ])
     ])
   ]
 })
-export class AppComponent{
-  listItem:string = ``;
+export class AppComponent implements OnInit{
   inputValue = "";
   selected: List;
-  current = new Date();
-  lists = [];
+  lists :List[];
+
+  constructor(private listservice: ListService){}
+
+  ngOnInit(){
+    this.lists = this.listservice.getList();
+  }
 
   selectClick(list:List){
     let tmp = new List();
@@ -38,7 +43,7 @@ export class AppComponent{
     if (input == "") {
     return false;
     }else{
-      var tempLists : List = {
+        let tempLists : List = {
         id: this.lists.length+1,
         date: new Date(),
         content: input,
