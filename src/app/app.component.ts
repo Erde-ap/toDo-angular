@@ -1,7 +1,7 @@
 import { Component,OnInit } from '@angular/core';
+import { trigger,state,style,transition,animate } from "@angular/animations";
 
 import { List } from "./list";
-import { trigger,state,style,transition,animate } from "@angular/animations";
 import { ListService } from './list.service';
 
 @Component({
@@ -10,23 +10,28 @@ import { ListService } from './list.service';
   styleUrls: ['./app.component.css'],
   animations:[
     trigger('labelState',[
-      state('active',style({transform: 'translateX(0)'})),
+      state('inactive',style({transform: 'scale(1,1)'})),
       state('void',style({transform:'translateX(100%)'})),
-      transition('void => active', [
-        animate('5000ms ease-in',style({transform: 'translateX(0)'}))
+      state('active',style({transform:'scale(1.02,1.02)'})),
+      transition('void => inactive', [
+        animate('400ms ease-in',style({transform: 'translateX(0)'}))
       ]),
-      transition('active => void', [
+      transition('* => void', [
         animate('350ms ease-in', style({transform: 'translateX(-100%)'}))
+      ]),
+      transition('inactive => active', [
+        animate('190ms ease-in', style({transform: 'scale(1.02,1.02)'}))
      ])
     ])
   ]
 })
 export class AppComponent implements OnInit{
+  lists: List[];
   inputValue = "";
   selected: List;
-  lists :List[];
+  stateFlag: string = 'inactive';
 
-  constructor(private listservice: ListService){}
+  constructor(private listservice:ListService){};
 
   ngOnInit(){
     this.lists = this.listservice.getList();
@@ -40,18 +45,8 @@ export class AppComponent implements OnInit{
   }
 
   addItem(input:string){
-    if (input == "") {
-    return false;
-    }else{
-        let tempLists : List = {
-        id: this.lists.length+1,
-        date: new Date(),
-        content: input,
-        finished_flag:false
-      }
-      this.lists.push(tempLists);
-      this.inputValue= "";
-    }
+    this.listservice.setList(input);
+    this.inputValue = "";
   }
 
   finishClick(list:List){
@@ -68,4 +63,13 @@ export class AppComponent implements OnInit{
     }
     this.selected = null;
   }
+
+  mouseEnter(item:List){
+      item.state = 'active';
+  }
+  mouseLeave(item:List){
+      item.state = 'inactive';
+  }
+
+
 }

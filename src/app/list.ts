@@ -3,4 +3,5 @@ export class List {
     date:Date;  //日付
     content:string; //内容
     finished_flag:boolean; //終わったら1
+    state:string;//アニメーション
 }
