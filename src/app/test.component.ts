@@ -6,7 +6,7 @@ import { ListService } from "./list.service";
 @Component({
     selector: 'test-list',
     template: `
-  
+    {{item}}
     `,
     styles:[
 

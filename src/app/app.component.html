@@ -5,18 +5,19 @@
     </a>
 </nav>
 <div class="col-md-9 col-12 mx-auto">
-      <div class="input-group my-4">
-          <input #inItem type="text" class="form-control" placeholder="今日の予定を入力しよう！" (keyup.enter)="addItem(inItem.value)" id="itemInput" [(ngModel)]="inputValue">
-          <span class="input-group-btn">
-            <button class="btn btn-outline-info" (click)="addItem(inItem.value)">追加</button>
-          </span>
-        </div>
+  <div class="input-group my-4">
+      <input #inItem type="text" class="form-control" placeholder="今日の予定を入力しよう！" (keyup.enter)="addItem(inItem.value)" id="itemInput" [(ngModel)]="inputValue">
+      <span class="input-group-btn">
+        <button class="btn btn-outline-info" (click)="addItem(inItem.value)">追加</button>
+      </span>
+    </div>
 </div>
+<edit-modal [item]="selected" (edited)="onedited($event)"></edit-modal>
 <div class="col-md-9 col-12 mx-auto">
   <ul class="list-group">
     <div *ngFor="let i of lists">
         <li class="todo-item-group todo-item" *ngIf="!i.finished_flag" [@labelState]="i.state" (mouseenter)="mouseEnter(i)" (mouseleave) ="mouseLeave(i)">
-            <label (click)="selectClick(i)" (click)="listservice.open(content)">{{i.content}}</label>
+            <label (click)="selectClick(i)" (click)="selectClick">{{i.content}}</label>
             <span class="input-group-btn">
             <button class="btn btn-outline-info" (click)="finishClick(i)">完了</button>
             </span>
@@ -24,5 +25,4 @@
     </div>
   </ul>
 </div>
-<!-- <test- [item]="selected"></test-list> -->
-<!-- <edit-modal [item]="selected" (edited)="onedited($event)"></edit-modal> -->
+<!-- <test-list [item]="selected"></test-list> -->
